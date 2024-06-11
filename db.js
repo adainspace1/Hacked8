@@ -1,0 +1,21 @@
+// I AM IMPORTING THE MYSQL MODULE I INSTALLED FROM NPM.....
+const mysql = require('mysql');
+
+//CREATE CONNECTION TO THE DATABASE
+const db = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "",
+        database: "hacked8"        
+});
+
+//CONNECT TO THE DATABASE
+db.connect((err)=>{
+    if (err) {
+        console.log('Error connecting to the database:', err.stack)
+    }else{
+        console.log('Connected to the database as ID', db.threadId);
+    }
+})
+
+module.exports = db
