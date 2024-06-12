@@ -4,10 +4,26 @@ const bodyParser = require('body-parser');
 const userRoutes = require('./routes/userroutes');
 const session = require('express-session');
 const methodOverride = require('method-override');
+const multer = require('multer');
 const app = express();
 const nodemailer = require('nodemailer');
 
 const path = require('path');
+
+
+// Logout function
+const logout = (req, res) => {
+  console.log('Logout function called'); // Debug log
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Error destroying session:', err);
+      return res.status(500).send('Server error.');
+    }
+    res.redirect('/login'); // Ensure this route exists
+  });
+};
+
+
 // Set the view engine to EJS
 app.set('view engine', 'ejs');
 
@@ -79,7 +95,7 @@ app.post('/sendmail', (req, res)=>{
 
 // Add a route for the registration form
 app.get('/register', (req, res) => {
-  res.render('register2');
+    res.render('register2');
 });
 
 // Dashboard route
@@ -101,6 +117,9 @@ app.get('/users/list', (req, res) => {
 app.get('/login', (req, res) => {
   res.render('login2');
 });
+
+// Logout route
+app.get('/logout', logout);
 
 
 // Start the server

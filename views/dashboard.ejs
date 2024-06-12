@@ -1,194 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Admin Dashboard</title>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Open Sans Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<!-- My CSS -->
+	<link rel="stylesheet" href="/css/dashboard.css">
 
-    <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+	<title>AdminHub</title>
+</head>
+<body>
 
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/dashboard.css">
-  </head>
-  <body>
-    <div class="grid-container">
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand">
+			<i class='bx bxs-smile'></i>
+			<span class="text"><%= user.firstname %></span>
+		</a>
+		<ul class="side-menu top">
+			<li class="active">
+				<a href="#">
+					<i class='bx bxs-dashboard' ></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class='bx bxs-shopping-bag-alt' ></i>
+					<span class="text">My Store</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class='bx bxs-doughnut-chart' ></i>
+					<span class="text">Analytics</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class='bx bxs-message-dots' ></i>
+					<span class="text">Message</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class='bx bxs-group' ></i>
+					<span class="text">Team</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="side-menu">
+			<li>
+				<a href="">
+					<i class='bx bxs-cog' ></i>
+					<span class="text">Settings</span>
+				</a>
+			</li>
+			<li>
+				<a href="/logout" class="logout">
+					<i class='bx bxs-log-out-circle' ></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
 
-      <!-- Header -->
-      <header class="header">
-        <div class="menu-icon" onclick="openSidebar()">
-          <span class="material-icons-outlined">menu</span>
-        </div>
-        <div class="header-left">
-          <span class="material-icons-outlined">search</span>
-        </div>
-        <div class="header-right">
-          <span class="material-icons-outlined">notifications</span>
-          <span class="material-icons-outlined">email</span>
-          <span class="material-icons-outlined">account_circle</span>
-        </div>
-      </header>
-      <!-- End Header -->
 
-      <!-- Sidebar -->
-      <aside id="sidebar">
-        <div class="sidebar-title">
-          <div class="sidebar-brand">
-            <img src="<%= user.img %>" alt="User Image" style="width:150px;height:auto;">
 
-            <p style="transform: translateX(-100px);"> <%= user.lastname %></p>
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu' ></i>
+			<a href="#" class="nav-link">Categories</a>
+			<form action="#">
+				<div class="form-input">
+					<input type="search" placeholder="Search...">
+					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+				</div>
+			</form>
+			<input type="checkbox" id="switch-mode" hidden>
+			<label for="switch-mode" class="switch-mode"></label>
+			<a href="#" class="notification">
+				<i class='bx bxs-bell' ></i>
+				<span class="num">8</span>
+			</a>
+			<a href="#" class="profile">
+				<img src="<%= user.img %>" alt="User Image" >
 
-          
-          </div>
-          <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
-        </div>
+			</a>
+		</nav>
+		<!-- NAVBAR -->
 
-        <ul class="sidebar-list">
-          <li class="sidebar-list-item">
-            <a href="#">
-              <span class="material-icons-outlined">dashboard</span> Dashboard
-            </a>
-          </li>
-          <li class="sidebar-list-item">
-            <a href="#">
-              <span class="material-icons-outlined">leaderboard</span> Leaderboard
-            </a>
-          </li>
-          <li class="sidebar-list-item">
-            <a href="#">
-              <span class="material-icons-outlined">forum</span> Forum
-            </a>
-          </li>
-          <li class="sidebar-list-item">
-            <a href="#">
-              <span class="material-icons-outlined">phone</span> Support
-            </a>
-          </li>
-          <li class="sidebar-list-item">
-            <a href="#">
-              <span class="material-icons-outlined">email</span> Messages
-            </a>
-          </li>
-          <li class="sidebar-list-item">
-            <a href="#">
-              <span class="material-icons-outlined">poll</span> Reports
-            </a>
-          </li>
-          <li class="sidebar-list-item">
-            <a href="#">
-              <span class="material-icons-outlined">settings</span> Settings
-            </a>
-          </li>
-        </ul>
-      </aside>
-      <!-- End Sidebar -->
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Dashboard</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Dashboard</a>
+						</li>
+						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="#">Home</a>
+						</li>
+					</ul>
+				</div>
+				<a href="#" class="btn-download">
+					<i class='bx bxs-cloud-download' ></i>
+					<span class="text">Download PDF</span>
+				</a>
+			</div>
 
-      <!-- Main -->
-      <main class="main-container">
-        <div class="main-title">
-          <h2>DASHBOARD</h2>
-        </div>
+			<ul class="box-info">
+				<li>
+					<i class='bx bxs-calendar-check' ></i>
+					<span class="text">
+						<h3>1020</h3>
+						<p>New Order</p>
+					</span>
+				</li>
+				<li>
+					<i class='bx bxs-group' ></i>
+					<span class="text">
+						<h3>2834</h3>
+						<p>Visitors</p>
+					</span>
+				</li>
+				<li>
+					<i class='bx bxs-dollar-circle' ></i>
+					<span class="text">
+						<h3>$2543</h3>
+						<p>Total Sales</p>
+					</span>
+				</li>
+			</ul>
 
-        <div class="main-cards">
 
-          <div class="card">
-            <div class="card-inner">
-              <h2>LIKES</h2>
-              <span class="material-icons-outlined">thumb_up</span>
-            </div>
-            <h1>4,021</h1>
-          </div>
+			<div class="table-data">
+				<div class="order">
+					<div class="head">
+						<h3>Recent Orders</h3>
+						<i class='bx bx-search' ></i>
+						<i class='bx bx-filter' ></i>
+					</div>
+					<table>
+						<thead>
+							<tr>
+								<th>User</th>
+								<th>Date Order</th>
+								<th>Status</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<img src="<%= user.img %>" alt="User Image" >
+									<p>John Doe</p>
+								</td>
+								<td>01-10-2021</td>
+								<td><span class="status completed">Completed</span></td>
+							</tr>
+							<tr>
+								<td>
+									<img src="<%= user.img %>" alt="User Image" >
+									<p>John Doe</p>
+								</td>
+								<td>01-10-2021</td>
+								<td><span class="status pending">Pending</span></td>
+							</tr>
+							<tr>
+								<td>
+									<img src="<%= user.img %>" alt="User Image" >
+									<p>John Doe</p>
+								</td>
+								<td>01-10-2021</td>
+								<td><span class="status process">Process</span></td>
+							</tr>
+							<tr>
+								<td>
+									<img src="<%= user.img %>" alt="User Image" >
+									<p>John Doe</p>
+								</td>
+								<td>01-10-2021</td>
+								<td><span class="status pending">Pending</span></td>
+							</tr>
+							<tr>
+								<td>
+									<img src="<%= user.img %>" alt="User Image" >
+									<p>John Doe</p>
+								</td>
+								<td>01-10-2021</td>
+								<td><span class="status completed">Completed</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="todo">
+					<div class="head">
+						<h3>Todos</h3>
+						<i class='bx bx-plus' ></i>
+						<i class='bx bx-filter' ></i>
+					</div>
+					<ul class="todo-list">
+						<li class="completed">
+							<p>Todo List</p>
+							<i class='bx bx-dots-vertical-rounded' ></i>
+						</li>
+						<li class="completed">
+							<p>Todo List</p>
+							<i class='bx bx-dots-vertical-rounded' ></i>
+						</li>
+						<li class="not-completed">
+							<p>Todo List</p>
+							<i class='bx bx-dots-vertical-rounded' ></i>
+						</li>
+						<li class="completed">
+							<p>Todo List</p>
+							<i class='bx bx-dots-vertical-rounded' ></i>
+						</li>
+						<li class="not-completed">
+							<p>Todo List</p>
+							<i class='bx bx-dots-vertical-rounded' ></i>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+	
 
-          <div class="card">
-            <div class="card-inner">
-              <h2>SUBSCRIBERS</h2>
-              <span class="material-icons-outlined">subscriptions</span>
-            </div>
-            <h1>8,731</h1>
-          </div>
-
-          <div class="card">
-            <div class="card-inner">
-              <h2>FOLLOWERS</h2>
-              <span class="material-icons-outlined">groups</span>
-            </div>
-            <h1>3,841</h1>
-          </div>
-
-          <div class="card">
-            <div class="card-inner">
-              <h2>MESSAGES</h2>
-              <span class="material-icons-outlined">forum</span>
-            </div>
-            <h1>1,962</h1>
-          </div>
-
-        </div>
-
-        <div class="products">
-
-          <div class="product-card">
-            <h2 class="product-description">Latest Updates</h2>
-            <p class="text-secondary">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet facilisis nulla, consectetur pulvinar diam. Aliquam tempus vel quam.
-            </p>
-            <button type="button" class="product-button">
-              <span class="material-icons-outlined">add</span>
-            </button>
-          </div>
-
-          <div class="social-media">
-            <div class="product">
-
-              <div>
-                <div class="product-icon background-red">
-                  <i class="bi bi-twitter"></i>
-                </div>
-                <h1 class="text-red">+274</h1>
-                <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </div>
-  
-              <div>
-                <div class="product-icon background-green">
-                  <i class="bi bi-instagram"></i>
-                </div>
-                <h1 class="text-green">+352</h1>
-                <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </div>
-  
-              <div>
-                <div class="product-icon background-orange">
-                  <i class="bi bi-facebook"></i>
-                </div>
-                <h1 class="text-orange">-126</h1>
-                <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </div>
-  
-              <div>
-                <div class="product-icon background-blue">
-                  <i class="bi bi-linkedin"></i>
-                </div>
-                <h1 class="text-blue">+102</h1>
-                <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </div>
-              
-            </div>
-          </div>
-
-        </div>
-      </main>
-      <!-- End Main -->
-
-    </div>
-
-    <!-- Scripts -->
-    <!-- Custom JS -->
-    <script src="js/scripts.js"></script>
-  </body>
+	<script src="/js/dash.js"></script>
+</body>
 </html>

@@ -24,7 +24,8 @@ const userController = {
           return res.status(401).send('Invalid email or password.');
         }
 
-        req.session.user = { id: user.id, name: user.name, email: user.email };
+        req.session.user = { id: user.id, firstname: user.firstname, lastname: user.lastname, email: user.email, img: user.img };
+        console.log(req.session.user)
         res.redirect('/dashboard');
       });
     });
