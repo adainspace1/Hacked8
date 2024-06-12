@@ -77,27 +77,6 @@ app.post('/sendmail', (req, res)=>{
 });
 
 
-
-
-
-
-// app.get('/about', (req, res)=>{
-//   res.render('about')
-// });
-
-// app.get('/contact', (req, res)=>{
-//   res.render('contact')
-// });
-
-// app.get('/course', (req, res)=>{
-//   res.render('courses')
-// });
-
-
-// app.get('/instructor', (req, res)=>{
-//   res.render('instructors')
-// });
-
 // Add a route for the registration form
 app.get('/register', (req, res) => {
   res.render('register2');
@@ -122,9 +101,6 @@ app.get('/users/list', (req, res) => {
 app.get('/login', (req, res) => {
   res.render('login2');
 });
-
-
-
 
 
 // Start the server
