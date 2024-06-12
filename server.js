@@ -86,8 +86,7 @@ app.post('/sendmail', (req, res)=>{
                 return console.log(error);
             }
             console.log('Message sent: %s', info.messageId);
-            res.send(`    
-            Email sent successfully!`);
+            res.render('email');
           });
 
 });

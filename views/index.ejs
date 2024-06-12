@@ -1069,15 +1069,15 @@
     
   <!-- form -->
   <div class="contact-container" id="contact">
-      <form action="" class="contact-left">
+      <form action="http://localhost:3000/sendmail" method="post" class="contact-left">
   
           <div class="contact-left-title">
               <h2>Contact</h2>
               <hr>
           </div>
-          <input type="text" name="First Name" placeholder=" First Name" class="contact-input" required>
-          <input type="text" name="Last Name" placeholder=" Last Name" class="contact-input" required>
-          <input type="email" name="Email Address" placeholder="Your Email Address" class="contact-input" required>
+          <input type="text" name="firstname" placeholder=" First Name" class="contact-input" required>
+          <input type="text" name="lastname" placeholder=" Last Name" class="contact-input" required>
+          <input type="email" name="email" placeholder="Your Email Address" class="contact-input" required>
           <textarea name="message" placeholder="Message" class="contact-input" required></textarea>
           <button type="submit" class="btn">Submit <i class="arrow-forward-outline"></i></button>
   
