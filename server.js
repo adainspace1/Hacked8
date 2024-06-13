@@ -7,9 +7,20 @@ const methodOverride = require('method-override');
 const multer = require('multer');
 const app = express();
 const nodemailer = require('nodemailer');
-
+const conn = require("./db")
 const path = require('path');
 
+
+
+
+
+function isAuthenticated(req, res, next) {
+  if (req.session && req.session.user) {
+    return next();
+  } else {
+    res.redirect('/login');
+  }
+}
 
 // Logout function
 const logout = (req, res) => {
@@ -51,7 +62,25 @@ app.use('/users', userRoutes);
 
 
 app.get('/', (req, res)=>{
-  res.render('index')
+  conn.query(`SELECT * FROM courses`, (err, result)=>{
+    res.render('index',{results:result})
+})
+  
+});
+
+app.get('/course/:id', isAuthenticated, (req, res) => {
+  const courseId = req.params.id;
+
+  conn.query('SELECT * FROM courses WHERE id = ?', [courseId], (err, result) => {
+    if (err) {
+      console.error('Error fetching course details:', err);
+      return res.status(500).send('Server error.');
+    }
+    if (result.length === 0) {
+      return res.status(404).send('Course not found');
+    }
+    res.render('courses', { course: result[0], user: req.session.user });
+  });
 });
 
 
@@ -74,7 +103,7 @@ app.post('/sendmail', (req, res)=>{
           let mailOptions = {
             from: 'shaazaniyu@gmail.com', // Sender address
             to: 'zoeadoree33@gmail.com, shazaniyu@gmail.com', // List of recipients
-            subject: 'JOB REQUEST', // Subject line
+            subject: 'HACKED8', // Subject line
             text: `FirstName: ${firstname}\n LastName: ${lastname} \nEmail: ${email}\nMessage: ${message}`, // Plain text body
             // You can add HTML to the email if needed
             // html: '<p>Name: ' + name + '</p><p>Email: ' + email + '</p><p>Message: ' + message + '</p>'

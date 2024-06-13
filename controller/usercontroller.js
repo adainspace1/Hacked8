@@ -57,9 +57,11 @@ const userController = {
     });
   },
 
+
   // Add a new method to handle the dashboard page
   dashboard: (req, res) => {
     if (req.session.user) {
+      
       res.render('dashboard', { user: req.session.user });
     } else {
       res.redirect('/register');

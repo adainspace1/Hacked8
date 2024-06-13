@@ -82,9 +82,7 @@
             <a href="#course" class="navbar-link" data-nav-link>Courses</a>
           </li>
 
-          <li class="navbar-item">
-            <a href="#teacher" class="navbar-link" data-nav-link>Instructors</a>
-          </li>
+         
 
           <li class="navbar-item">
             <a href="#contact" class="navbar-link" data-nav-link>Contact</a>
@@ -907,162 +905,29 @@
 
 <section class="course" id="course">
   <center>
-       <h1 class="heading">Courses</h1>
+    <h1 class="heading">Courses</h1>
   </center>
- 
-  <div class="box-container">
-      <div class="box">
-          <img src="/images/ik-removebg-preview.png">
-          <h3>UI/UX</h3>
-          <p>₦50,000</p>
-               
-     
-      </div>
-
-      <div class="box">
-          <img src="/images/fre-removebg-preview.png">
-          <h3>Frontend Web Dev</h3>
-          <p>₦80,000</p>
-               
-     
-      </div>
-
-      <div class="box">
-          <img src="/images/dec-removebg-preview.png">
-          <h3>Backend Web Dev</h3>
-          <p>₦150,000</p>
-               
-     
-      </div>
-
-
-      <div class="box">
-          <img src="/images/ut-removebg-preview.png">
-          <h3>Mobile App</h3>
-          <p>₦350,000</p>
-               
-     
-      </div>
-
-      <div class="box">
-          <img src="/images/front-removebg-preview.png">
-          <h3>Web Development</h3>
-          <p>₦180,000</p>
-               
-     
-      </div>
-
-      
-      <div class="box">
-          <img src="/images/stat-removebg-preview.png">
-          <h3>Visual Design/Editing</h3>
-          <p>₦100,000</p>
-               
-     
-      </div>
-
-      
-      <div class="box">
-          <img src="/images/proj-removebg-preview.png">
-          <h3>Project Management</h3>
-           <p>₦200,000</p>
-     
-     </div>
-     <div class="box">
-      <img src="/images/dig-removebg-preview.png">
-      <h3>Digital Marketing</h3>
-       <p>₦150,000</p>
- 
-      </div>
-      <div class="box">
-          <img src="/images/cybersecurity-removebg-preview.png">
-          <h3>Cybersecurity</h3>
-           <p>₦350,000</p>
-     
-          </div>
-
-          
-     
-
-          <div class="box">
-              <img src="/images/Bot-removebg-preview.png">
-              <h3>Robotics</h3>
-               <p>₦500,000</p>
-         
-              </div>
-
-              <div class="box">
-                  <img src="/images/cyber-removebg-preview.png">
-                  <h3>Graphics</h3>
-                   <p>₦50,000</p>
-             
-                  </div>
-  
-              </div>
-   
-</section>
-
-
-
-
-<section class="teacher" id="teacher">
-
 
   <div class="box-container">
-   
-   
-
+    <% results.forEach(function(item) { %>
       <div class="box">
-        
-          <div class="image">
-              <img src="/images/Untitled design.png" alt="">
-              <!-- <div class="share">
-                  <a href="#" class="fa fa-facebook"></a>
-                  <a href="#" class="fa fa-instagram"></a>
-                  <a href="#" class="fa fa-whatsapp"></a>
-              </div> -->
-          </div>
-          <div class="content">
-              <h3>MR SHAZANIYU</h3>
-              <span style="font-weight: bold; color: #FFC700;">FULLSTACK DEVELOPER</span>
-          </div>
+        <img src="<%= item.img %>" alt="<%= item.name %>">
+        <h3><%= item.name %></h3>
+        <p>$<%= item.price %></p>
+
+        <a href="/course/<%= item.id %>"><button>View</button></a>
       </div>
-
-      <div class="box">
-          <div class="image">
-              <img src="/images/WhatsApp Image 2024-05-19 at 6.31.44 AM.jpeg" alt="">
-              <!-- <div class="share">
-                  <a href="#" class="fa fa-facebook"></a>
-                  <a href="#" class="fa fa-instagram"></a>
-                  <a href="#" class="fa fa-whatsapp"></a>
-              </div> -->
-          </div>
-          <div class="content">
-              <h3>MRS ZAINAB</h3>
-              <span style="color: #FFC700; font-weight: bold;">UI/UX</span>
-          </div>
-      </div>
-
-      <div class="box">
-          <div class="image">
-            <img src="/images/WhatsApp Image 2024-05-19 at 6.31.44 AM.jpeg" alt="">
-              <!-- <div class="share">
-                  <a href="#" class="fa fa-facebook"></a>
-                  <a href="#" class="fa fa-instagram"></a>
-                  <a href="#" class="fa fa-whatsapp"></a>
-              </div> -->
-          </div>
-          <div class="content">
-              <h3>MRS RACHEAL</h3>
-              <span style="color: #FFC700; font-weight: bold;">FRONTEND DEVELOPER</span>
-          </div>
-      </div>
-
-    
-
-    
+    <% }) %>
   </div>
 </section>
+
+
+
+
+
+
+
+
 
 
 <center>

@@ -600,8 +600,17 @@ font-family: var(--ff-league_spartan);
   background: var(--primary-color);
 }
 .course .box-container .box img{
- 
+ height: 150px;
+ width: 250px;
   margin-bottom: .7rem;
+}
+
+.course .box-container .box button{
+  background-color: blue;
+  color: white;
+  width: 100px;
+  margin: 5px;
+  transform: translateX(50px);
 }
 .course .box-container .box img:hover{
   transform: scale(1.1);
