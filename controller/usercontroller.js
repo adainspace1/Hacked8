@@ -69,12 +69,7 @@ const userController = {
   },
 
 
-    createUser:(req, res)=>{
-        const newUser = req.body;
-        User.createUser(newUser, (result)=>{
-                res.json({id: result.inserId, ...newUser})
-        })
-    },
+ 
 
     deleteUser: (req, res) => {
       const userId = req.params.id;
@@ -96,31 +91,9 @@ const userController = {
         });
       },
 
-      listUsers: (req, res) => {
-        User.getAllUsers((users) => {
-          res.render('index', { users });
-        });
-      },
-      
-      showUser: (req, res) => {
-        const userId = req.params.id;
-        User.getUserById(userId, (user) => {
-          res.json(user);
-        });
-      },
-
-    
      
-      logout: (req, res) => {
-        console.log('Logout function called'); // Debug log
-        req.session.destroy((err) => {
-          if (err) {
-            console.error('Error destroying session:', err);
-            return res.status(500).send('Server error.');
-          }
-          res.redirect('/login'); // Ensure this route exists
-        });
-      },
+ 
+    
 
       getUserDetails: (req, res) => {
         const userId = req.session.user.id; // Assuming user ID is stored in session

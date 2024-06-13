@@ -10,9 +10,7 @@ const nodemailer = require('nodemailer');
 const conn = require("./db")
 const path = require('path');
 
-
-
-
++
 
 function isAuthenticated(req, res, next) {
   if (req.session && req.session.user) {
@@ -63,7 +61,7 @@ app.use('/users', userRoutes);
 
 app.get('/', (req, res)=>{
   conn.query(`SELECT * FROM courses`, (err, result)=>{
-    res.render('index',{results:result})
+    res.render('index',{results:result, user: req.session.user})
 })
   
 });

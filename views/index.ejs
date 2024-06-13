@@ -97,30 +97,60 @@
 
       </nav>
 
-      <div class="header-actions">
+      <% if(user){ %>
+        <div class="header-actions">
 
-        <button class="header-action-btn" aria-label="toggle search" title="Search">
-          <!-- <ion-icon name="search-outline" aria-hidden="true"></ion-icon> -->
-        </button>
+          <button class="header-action-btn" aria-label="toggle search" title="Search">
+            <!-- <ion-icon name="search-outline" aria-hidden="true"></ion-icon> -->
+          </button>
+  
+          <!-- <button class="header-action-btn" aria-label="cart" title="Cart">
+            <ion-icon name="cart-outline" aria-hidden="true"></ion-icon> -->
+  
+            <!-- <span class="btn-badge">0</span> -->
+          </button>
+  
+          <a href="/dashboard" class="btn has-before" style="background-color:#FFC700;">
+            <%= user.firstname %>
+         
+          </a>
+  
+          <button class="header-action-btn" aria-label="open menu" data-nav-toggler>
+            <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+          </button>
+  
+        </div>
 
-        <!-- <button class="header-action-btn" aria-label="cart" title="Cart">
-          <ion-icon name="cart-outline" aria-hidden="true"></ion-icon> -->
+        <% } else { %>
 
-          <!-- <span class="btn-badge">0</span> -->
-        </button>
+          <div class="header-actions">
 
-        <a href="/register" class="btn has-before" style="background-color:#FFC700;">Login/Register
-           <span class="span"><a href="/login"></a></span> 
-          <!-- <button class="yet">Login/Register</button> -->
-            <!-- <a href="/views/reg.html" class="fre">Login/Register</a> -->
-          <!-- <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon> -->
-        </a>
+            <button class="header-action-btn" aria-label="toggle search" title="Search">
+              <!-- <ion-icon name="search-outline" aria-hidden="true"></ion-icon> -->
+            </button>
+    
+            <!-- <button class="header-action-btn" aria-label="cart" title="Cart">
+              <ion-icon name="cart-outline" aria-hidden="true"></ion-icon> -->
+    
+              <!-- <span class="btn-badge">0</span> -->
+            </button>
+    
+            <a href="/register" class="btn has-before" style="background-color:#FFC700;">Login/Register
+               <span class="span"><a href="/login"></a></span> 
+              <!-- <button class="yet">Login/Register</button> -->
+                <!-- <a href="/views/reg.html" class="fre">Login/Register</a> -->
+              <!-- <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon> -->
+            </a>
+    
+            <button class="header-action-btn" aria-label="open menu" data-nav-toggler>
+              <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+            </button>
+    
+          </div>
+          
+        <% } %>
 
-        <button class="header-action-btn" aria-label="open menu" data-nav-toggler>
-          <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
-        </button>
-
-      </div>
+      
 
       <div class="overlay" data-nav-toggler data-overlay></div>
 
