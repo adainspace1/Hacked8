@@ -4,13 +4,11 @@ const bodyParser = require('body-parser');
 const userRoutes = require('./routes/userroutes');
 const session = require('express-session');
 const methodOverride = require('method-override');
-const multer = require('multer');
 const app = express();
 const nodemailer = require('nodemailer');
 const conn = require("./db")
 const path = require('path');
 
-+
 
 function isAuthenticated(req, res, next) {
   if (req.session && req.session.user) {
@@ -19,6 +17,8 @@ function isAuthenticated(req, res, next) {
     res.redirect('/login');
   }
 }
+
+
 
 // Logout function
 const logout = (req, res) => {
@@ -37,6 +37,7 @@ const logout = (req, res) => {
 app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Override methods for DELETE requests from forms
 app.use(methodOverride('_method'));
@@ -133,10 +134,7 @@ app.get('/dashboard', (req, res) => {
   }
 });
 
-// Route to list all users
-app.get('/users/list', (req, res) => {
-  res.redirect('/users/list');
-});
+
 
 
 // Route for the login form

@@ -33,6 +33,13 @@
 					<span class="text">My Courses</span>
 				</a>
 			</li>
+
+			<li>
+				<a href="#">
+					<i class='bx bxs-shopping-bag-alt' ></i>
+					<span class="text">Take Quiz</span>
+				</a>
+			</li>
 			
 			<li>
 				<a href="#">
@@ -75,7 +82,7 @@
 				<span class="num">8</span>
 			</a>
 			<a href="#" class="profile">
-				<img src="<%= user.img %>" alt="User Image" >
+				<img src="/uploads/<%= user.profile_image %>" alt="User Image" >
 
 			</a>
 		</nav>
@@ -142,40 +149,40 @@
 						<tbody>
 							<tr>
 								<td>
-									<img src="<%= user.img %>" alt="User Image" >
-									<p>John Doe</p>
+									<img src="/uploads/<%= user.profile_image %>" alt="User Image" >
+									<p><%= user.firstname %></p>
 								</td>
 								<td>01-10-2021</td>
 								<td><span class="status completed">Completed</span></td>
 							</tr>
 							<tr>
 								<td>
-									<img src="<%= user.img %>" alt="User Image" >
-									<p>John Doe</p>
+									<img src="/uploads/<%= user.profile_image %>" alt="User Image" >
+									<p><%= user.firstname %></p>
 								</td>
 								<td>01-10-2021</td>
 								<td><span class="status pending">Pending</span></td>
 							</tr>
 							<tr>
 								<td>
-									<img src="<%= user.img %>" alt="User Image" >
-									<p>John Doe</p>
+									<img src="/uploads/<%= user.profile_image %>" alt="User Image" >
+									<p><%= user.firstname %></p>
 								</td>
 								<td>01-10-2021</td>
 								<td><span class="status process">Process</span></td>
 							</tr>
 							<tr>
 								<td>
-									<img src="<%= user.img %>" alt="User Image" >
-									<p>John Doe</p>
+									<img src="/uploads/<%= user.profile_image %>" alt="User Image" >
+									<p><%= user.firstname %></p>
 								</td>
 								<td>01-10-2021</td>
 								<td><span class="status pending">Pending</span></td>
 							</tr>
 							<tr>
 								<td>
-									<img src="<%= user.img %>" alt="User Image" >
-									<p>John Doe</p>
+									<img src="/uploads/<%= user.profile_image %>" alt="User Image" >
+									<p><%= user.firstname %></p>
 								</td>
 								<td>01-10-2021</td>
 								<td><span class="status completed">Completed</span></td>

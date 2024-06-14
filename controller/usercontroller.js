@@ -1,8 +1,21 @@
-const User = require('../model/usermodel')
+const User = require('../model/usermodel');
 const bcrypt = require('bcrypt');
+const multer = require('multer');
+const path = require('path');
+
+// Configure Multer for file uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/'); // Ensure the 'uploads' directory exists
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname)); // Use a unique filename
+  }
+});
+
+const upload = multer({ storage: storage }).single('profile_image'); // Accept a single file with the name 'profile_image'
 
 const userController = {
-
   login: (req, res) => {
     const { email, password } = req.body;
 
@@ -24,95 +37,68 @@ const userController = {
           return res.status(401).send('Invalid email or password.');
         }
 
-        req.session.user = { id: user.id, firstname: user.firstname, lastname: user.lastname, email: user.email, img: user.img };
-        console.log(req.session.user)
+        req.session.user = {
+          id: user.id,
+          firstname: user.firstname,
+          lastname: user.lastname,
+          email: user.email,
+          profile_image: user.profile_image
+        };
+        console.log(req.session.user);
         res.redirect('/dashboard');
       });
     });
   },
-
 
   register: (req, res) => {
-    const {firstname, lastname, email, password } = req.body;
+    // Use multer to handle file upload
+    upload(req, res, (err) => {
+      if (err) {
+        console.error('Error uploading file:', err);
+        return res.status(500).send('File upload error.');
+      }
 
-    // Encrypt the password
-    const saltRounds = 10;
-    bcrypt.hash(password, saltRounds, (err, hashedPassword) => {
-      if (err) throw err;
+      const { firstname, lastname, email, password } = req.body;
+      const profileImage = req.file ? req.file.filename : null; // Get the filename of the uploaded file
 
-      const newUser = {
-        firstname,
-        lastname,
-        email,
-        password: hashedPassword // Save the hashed password
-      };
+      // Encrypt the password
+      const saltRounds = 10;
+      bcrypt.hash(password, saltRounds, (err, hashedPassword) => {
+        if (err) throw err;
 
-      User.createUser(newUser, (result) => {
-        // Store user information in session
-        req.session.user = { firstname, lastname,  email };
+        const newUser = {
+          firstname,
+          lastname,
+          email,
+          password: hashedPassword, // Save the hashed password
+          profile_image: profileImage // Save the profile image filename
+        };
 
-        // Redirect to the dashboard page
-        res.redirect('/dashboard');
+        User.createUser(newUser, ( result) => {
+          // Store user information in session
+          req.session.user = {
+            id: result.insertId, // Assuming the user ID is returned after insert
+            firstname,
+            lastname,
+            email,
+            profile_image: profileImage // Store the image info in session
+          };
+
+          // Redirect to the dashboard page
+          res.redirect('/dashboard');
+        });
       });
     });
   },
 
-
-  // Add a new method to handle the dashboard page
+  // Handle the dashboard page
   dashboard: (req, res) => {
     if (req.session.user) {
-      
       res.render('dashboard', { user: req.session.user });
     } else {
       res.redirect('/register');
     }
   },
-
-
- 
-
-    deleteUser: (req, res) => {
-      const userId = req.params.id;
-  
-      User.deleteUser(userId, (result) => {
-        if (result.affectedRows > 0) {
-          res.redirect('/users/list'); // Redirect to a list of users or a confirmation page
-        } else {
-          res.status(404).send('User not found');
-        }
-      });
-    },
-
-      updateUser: (req, res) => {
-        const userId = req.params.id;
-        const updatedUser = req.body;
-        User.updateUser(userId, updatedUser, (result) => {
-          res.json({ id: userId, ...updatedUser });
-        });
-      },
-
-     
- 
-    
-
-      getUserDetails: (req, res) => {
-        const userId = req.session.user.id; // Assuming user ID is stored in session
-    
-        db.query('SELECT firstname, lastname, email, img FROM users WHERE id = ?', [userId], (err, results) => {
-          if (err) {
-            console.error('Error fetching user details:', err);
-            return res.status(500).send('Server error.');
-          }
-    
-          if (results.length > 0) {
-            const user = results[0];
-            res.render('dashboard', { user });
-          } else {
-            res.redirect('/login');
-          }
-        });
-      }
-   
-}
+};
 
 module.exports = userController;
