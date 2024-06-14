@@ -28,7 +28,7 @@ const logout = (req, res) => {
       console.error('Error destroying session:', err);
       return res.status(500).send('Server error.');
     }
-    res.redirect('/login'); // Ensure this route exists
+    res.redirect('/'); // Ensure this route exists
   });
 };
 
@@ -147,7 +147,7 @@ app.get('/logout', logout);
 
 
 // Start the server
-const port = 3000;
+const port = 3200;
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}/`);
 });
