@@ -99,6 +99,13 @@ const userController = {
       res.redirect('/register');
     }
   },
+
+  listAll:(req, res)=>{
+    User.getAllUsers((users)=>{
+        console.log(users)
+        res.render('list_user', {user: users})
+    })
+  }
 };
 
 module.exports = userController;

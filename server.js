@@ -135,6 +135,9 @@ app.get('/dashboard', (req, res) => {
 });
 
 
+app.get('/users/admin/list', (req, res)=>{
+  res.render('list_user',{} )
+})
 
 
 // Route for the login form
