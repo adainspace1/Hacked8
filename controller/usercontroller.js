@@ -105,6 +105,15 @@ const userController = {
         console.log(users)
         res.render('list_user', {user: users})
     })
+  },
+
+  deleteuser: (req, res)=>{
+    const {id} = req.body
+
+    User.deleteUser( id, (result)=>{
+        console.log('user deleted' + id)
+        res.redirect('/users/admin/list')
+    })
   }
 };
 

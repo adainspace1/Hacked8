@@ -136,7 +136,11 @@ app.get('/dashboard', (req, res) => {
 
 
 app.get('/users/admin/list', (req, res)=>{
-  res.render('list_user',{} )
+  res.render('list_user')
+})
+
+app.get('/users/delete-user', (req, res)=>{
+  res.send('user deleted')
 })
 
 
