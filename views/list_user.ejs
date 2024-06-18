@@ -28,6 +28,7 @@
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
+                    <th>profile pic</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -38,6 +39,9 @@
                         <td><%= users.firstname %></td>
                         <td><%= users.lastname %></td>
                         <td><%= users.email %></td>
+                        <td>
+                            <img src="/uploads/<%= users.profile_image %>" width="50px" height="50px" style="border-radius: 50%;"/>
+                            </td>
                         <td>
                             <form action="/users/delete-user" method="POST" class="d-inline">
                                 <input type="hidden" name="id" value="<%= users.id %>">
@@ -58,6 +62,11 @@
             <div class="form-group">
                 <label for="lastname">Course Categories:</label>
                 <input type="text" class="form-control" id="lastname" name="lastname" required>
+            </div>
+
+            <div class="form-group">
+                <label for="lastname">Course video:</label>
+                <input type="file" class="form-control" id="video" name="video" required>
             </div>
            
             <button type="submit" class="btn btn-primary">Upload</button>
