@@ -102,7 +102,7 @@ const userController = {
 
   listAll:(req, res)=>{
     User.getAllUsers((users)=>{
-        console.log(users)
+        //console.log(users)
         res.render('list_user', {user: users})
     })
   },
@@ -111,8 +111,21 @@ const userController = {
     const {id} = req.body
 
     User.deleteUser( id, (result)=>{
-        console.log('user deleted' + id)
+        //console.log('user deleted' + id)
         res.redirect('/users/admin/list')
+    })
+  },
+
+  search: (req, res)=>{
+    const searchCriteria = {};
+
+    if (req.query.firstname) {
+      searchCriteria.firstname = req.query.firstname;
+  }
+
+    User.searchUsers(searchCriteria, (results)=>{
+        console.log(results)
+        res.render('search', {result: results})
     })
   }
 };

@@ -143,6 +143,10 @@ app.get('/users/delete-user', (req, res)=>{
   res.send('user deleted')
 })
 
+app.get('/users/search-user', (req, res)=>{
+  res.send('user searched')
+})
+
 
 // Route for the login form
 app.get('/login', (req, res) => {

@@ -50,6 +50,31 @@ const User = {
         });
       },
 
+      searchUsers: (searchCriteria, callback) => {
+        let query = 'SELECT * FROM users WHERE 1=1'; // The initial condition is always true to append further conditions
+        let queryParams = [];
+
+        // Dynamically build the query based on the provided search criteria
+        if (searchCriteria.firstname) {
+            query += ' AND firstname LIKE ?';
+            queryParams.push(`%${searchCriteria.firstname}%`);
+        }
+
+        // if (searchCriteria.email) {
+        //     query += ' AND email LIKE ?';
+        //     queryParams.push(`%${searchCriteria.email}%`);
+        // }
+
+        // Add other search criteria as needed
+
+        db.query(query, queryParams, (err, results) => {
+            if (err) throw err;
+            callback(results);
+        });
+    },
+
+
+
     
 
 }
