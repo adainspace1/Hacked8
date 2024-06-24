@@ -38,7 +38,7 @@ const userController = {
         }
 
         req.session.user = {
-          id: user.id,
+          user_id: user.user_id,
           firstname: user.firstname,
           lastname: user.lastname,
           email: user.email,
@@ -50,6 +50,34 @@ const userController = {
     });
   },
 
+
+  regsterProfile: (req, res)=>{
+      const {fullname, stack, bio, id} = req.body;
+
+
+    
+      const newprofile = {
+        
+        fullname : fullname,
+        stack: stack,
+        bio: bio,
+        user_id:id
+       
+      }
+      console.log(newprofile)
+
+      User.createProfile(newprofile, (result)=>{
+      
+          console.log(result)
+          res.render('profile', {user: req.session.user})
+      })
+
+  },
+
+  send:(req, res)=>{
+
+
+  },
   register: (req, res) => {
     // Use multer to handle file upload
     upload(req, res, (err) => {
@@ -60,8 +88,16 @@ const userController = {
 
       const { firstname, lastname, email, password } = req.body;
       const profileImage = req.file ? req.file.filename : null; // Get the filename of the uploaded file
-
-      // Encrypt the password
+      
+      User.findUserByEmail(email, (err, existingUser)=>{
+        if(err){
+            return res.status(500).send('Internal server error.');
+        }
+        if (existingUser) {
+          // Email already exists, return an error
+          return res.status(400).send('Email already in use.');
+      }else{
+          // Encrypt the password
       const saltRounds = 10;
       bcrypt.hash(password, saltRounds, (err, hashedPassword) => {
         if (err) throw err;
@@ -74,6 +110,8 @@ const userController = {
           profile_image: profileImage // Save the profile image filename
         };
 
+       
+
         User.createUser(newUser, ( result) => {
           // Store user information in session
           req.session.user = {
@@ -84,10 +122,15 @@ const userController = {
             profile_image: profileImage // Store the image info in session
           };
 
+          console.log(req.session.user)
+
           // Redirect to the dashboard page
           res.redirect('/dashboard');
         });
       });
+      }
+      })
+      
     });
   },
 

@@ -4,98 +4,148 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>List Users</title>
+    	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="/css/dashboard.css">
 </head>
 <body>
-    <nav class="navbar navbar-light bg-dark justify-content-between">
-        <a class="navbar-brand text-white">Hacked8 Admin</a>
-        <form class="form-inline" action="/users/search-user" method="get">
-          <input class="form-control mr-sm-2" name="firstname" id="firstname" type="search" placeholder="Search Users" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </nav>
+
+    <!-- SIDEBAR -->
+	<section id="sidebar">
+		
+		<ul class="side-menu top">
+			<li class="active">
+				<a href="#">
+					<i class='bx bxs-dashboard' ></i>
+					<span class="text">List Users</span>
+				</a>
+			</li>
+			
+			
+		</ul>
+		<!-- <ul class="side-menu">
+			
+			<li>
+				<a href="/logout" class="logout">
+					<i class='bx bxs-log-out-circle' ></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul> -->
+	</section>
+	<!-- SIDEBAR -->
+    <section id="content">
+
+        <nav>
+            <i class='bx bx-menu' ></i>
+            <a href="#" class="nav-link">Hacked8 Admin</a>
+
+
+            <a href="#" class="notification">
+				<i class='bx bxs-bell' ></i>
+				<span class="num">8</span>
+			</a>
+
+              <form  action="/users/search-user" method="get">
+				<div class="form-input">
+					<input class="form-control mr-sm-2" name="firstname" id="firstname" type="search" placeholder="Search Users" aria-label="Search">
+					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+				</div>
+			</form>
+    
+          
+           
+        </nav>
+    
+
+        <div class="container mt-5">
+            <h1 class="mb-4">Users</h1>
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>profile pic</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% user.forEach(users => { %>
+                        <tr>
+                            <td><%= users.id %></td>
+                            <td><%= users.firstname %></td>
+                            <td><%= users.lastname %></td>
+                            <td><%= users.email %></td>
+                            <td>
+                                <img src="/uploads/<%= users.profile_image %>" width="50px" height="50px" style="border-radius: 50%;"/>
+                                </td>
+                            <td>
+                                <form action="/users/delete-user" method="POST" class="d-inline">
+                                    <input type="hidden" name="id" value="<%= users.id %>">
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+    
+            <h2 class="mt-5">Upload a Course</h2>
+            <form action="/add-user" method="POST" class="mt-3">
+                <div class="form-group">
+                    <label for="firstname">Course Title:</label>
+                    <input type="text" class="form-control" id="firstname" name="firstname" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastname">Course Categories:</label>
+                    <input type="text" class="form-control" id="lastname" name="lastname" required>
+                </div>
+    
+                <div class="form-group">
+                    <label for="lastname">Course video:</label>
+                    <input type="file" class="form-control" id="video" name="video" required>
+                </div>
+               
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </form>
+    
+    
+            <h2 class="mt-5">Upload Exams</h2>
+    
+    
+            <form action="/add-user" method="POST" class="mt-3">
+                <div class="form-group">
+                    <label for="firstname">Course Title:</label>
+                    <input type="text" class="form-control" id="firstname" name="firstname" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastname">Course Categories:</label>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                        <option selected>select category</option>
+                        <option value="1">FrontEnd</option>
+                        <option value="2">BackEnd</option>
+                        <option value="3">UI/UX</option>
+                      </select>
+                </div>
+    
+                
+               
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </form>
+        </div>
+
+    </section>
+
+
+
 
 
  
 
-    <div class="container mt-5">
-        <h1 class="mb-4">Users</h1>
-        <table class="table table-bordered table-hover">
-            <thead class="thead-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>profile pic</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% user.forEach(users => { %>
-                    <tr>
-                        <td><%= users.id %></td>
-                        <td><%= users.firstname %></td>
-                        <td><%= users.lastname %></td>
-                        <td><%= users.email %></td>
-                        <td>
-                            <img src="/uploads/<%= users.profile_image %>" width="50px" height="50px" style="border-radius: 50%;"/>
-                            </td>
-                        <td>
-                            <form action="/users/delete-user" method="POST" class="d-inline">
-                                <input type="hidden" name="id" value="<%= users.id %>">
-                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                <% }); %>
-            </tbody>
-        </table>
-
-        <h2 class="mt-5">Upload a Course</h2>
-        <form action="/add-user" method="POST" class="mt-3">
-            <div class="form-group">
-                <label for="firstname">Course Title:</label>
-                <input type="text" class="form-control" id="firstname" name="firstname" required>
-            </div>
-            <div class="form-group">
-                <label for="lastname">Course Categories:</label>
-                <input type="text" class="form-control" id="lastname" name="lastname" required>
-            </div>
-
-            <div class="form-group">
-                <label for="lastname">Course video:</label>
-                <input type="file" class="form-control" id="video" name="video" required>
-            </div>
-           
-            <button type="submit" class="btn btn-primary">Upload</button>
-        </form>
-
-
-        <h2 class="mt-5">Upload Exams</h2>
-
-
-        <form action="/add-user" method="POST" class="mt-3">
-            <div class="form-group">
-                <label for="firstname">Course Title:</label>
-                <input type="text" class="form-control" id="firstname" name="firstname" required>
-            </div>
-            <div class="form-group">
-                <label for="lastname">Course Categories:</label>
-                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                    <option selected>select category</option>
-                    <option value="1">FrontEnd</option>
-                    <option value="2">BackEnd</option>
-                    <option value="3">UI/UX</option>
-                  </select>
-            </div>
-
-            
-           
-            <button type="submit" class="btn btn-primary">Upload</button>
-        </form>
-    </div>
+   <script src="/js/dash.js"></script>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

@@ -1,4 +1,5 @@
 // app.js
+//this top section is where i imported all my installed  modules..
 const express = require('express');
 const bodyParser = require('body-parser');
 const userRoutes = require('./routes/userroutes');
@@ -8,6 +9,7 @@ const app = express();
 const nodemailer = require('nodemailer');
 const conn = require("./db")
 const path = require('path');
+const cors = require('cors');
 
 
 function isAuthenticated(req, res, next) {
@@ -35,7 +37,7 @@ const logout = (req, res) => {
 
 // Set the view engine to EJS
 app.set('view engine', 'ejs');
-
+app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
@@ -58,6 +60,7 @@ app.use(session({
 
 // Use the user routes
 app.use('/users', userRoutes);
+
 
 
 app.get('/', (req, res)=>{
@@ -118,17 +121,54 @@ app.post('/sendmail', (req, res)=>{
           });
 
 });
-
-
 // Add a route for the registration form
 app.get('/register', (req, res) => {
     res.render('register2');
 });
 
+
+app.get('/users/create-profile', (req, res) => {
+  // res.render('dashboard')
+});
+
 // Dashboard route
 app.get('/dashboard', (req, res) => {
+
   if (req.session.user) {
     res.render('dashboard', { user: req.session.user });
+  } else {
+    res.redirect('/login');
+  }
+});
+
+
+
+app.get('/dashboard/profile/:id', isAuthenticated , (req, res) => {
+  const courseId = req.params.id;
+  conn.query(`SELECT * FROM profile WHERE user_id = ?`,[courseId], (err, result)=>{
+    console.log(result)
+    if (err) {
+      console.error('Error fetching course details:', err);
+      return res.status(500).send('Server error.');
+    }
+    
+    res.render('profile', { results: result[0], user: req.session.user });
+
+    // if (req.session.user) {
+    //   res.render('profile', {results: result,  user: req.session.user });
+    // } else {
+    //   res.redirect('/login');
+    // }
+
+})
+
+});
+
+
+app.get('/dashboard/message', (req, res) => {
+
+  if (req.session.user) {
+    res.render('message', { user: req.session.user });
   } else {
     res.redirect('/login');
   }

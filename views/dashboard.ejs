@@ -16,10 +16,7 @@
 
 	<!-- SIDEBAR -->
 	<section id="sidebar">
-		<a href="#" class="brand">
-			<i class='bx bxs-smile'></i>
-			<a  href="/"><span class="text">Hacked8</span> </a> 
-		</a>
+		
 		<ul class="side-menu top">
 			<li class="active">
 				<a href="#">
@@ -36,15 +33,22 @@
 
 			<li>
 				<a href="#">
-					<i class='bx bxs-shopping-bag-alt' ></i>
+					<i class='bx bxs-book' ></i>
 					<span class="text">Take Quiz</span>
 				</a>
 			</li>
 			
 			<li>
-				<a href="#">
+				<a href="/dashboard/message">
 					<i class='bx bxs-message-dots' ></i>
 					<span class="text">Message</span>
+				</a>
+			</li>
+
+			<li>
+				<a href="/dashboard/profile/<%= user.user_id %>">
+					<i class='bx bxs-user' ></i>
+					<span class="text">Profile</span>
 				</a>
 			</li>
 			
@@ -68,19 +72,10 @@
 		<!-- NAVBAR -->
 		<nav>
 			<i class='bx bx-menu' ></i>
-			<a href="#" class="nav-link">Categories</a>
-			<form action="#">
-				<div class="form-input">
-					<input type="search" placeholder="Search...">
-					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
-				</div>
-			</form>
-			<input type="checkbox" id="switch-mode" hidden>
-			<label for="switch-mode" class="switch-mode"></label>
-			<a href="#" class="notification">
-				<i class='bx bxs-bell' ></i>
-				<span class="num">8</span>
-			</a>
+			<a href="/" class="nav-link">Hacked8</a>
+			
+		
+			
 			<a href="#" class="profile">
 				<img src="/uploads/<%= user.profile_image %>" alt="User Image" >
 
@@ -190,35 +185,7 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="todo">
-					<div class="head">
-						<h3>Todos</h3>
-						<i class='bx bx-plus' ></i>
-						<i class='bx bx-filter' ></i>
-					</div>
-					<ul class="todo-list">
-						<li class="completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="not-completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="not-completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-					</ul>
-				</div>
+				
 			</div>
 		</main>
 		<!-- MAIN -->

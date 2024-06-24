@@ -10,6 +10,24 @@ const User = {
         })
     },
 
+    createProfile:(user, callback)=>{
+      const query = "INSERT INTO profile SET ?"
+      db.query(query, user, (err, result)=>{
+            if(err) throw err;
+            callback(result)
+      })
+
+    },
+
+    message:(user, callback)=>{
+      const query = "INSERT INTO message SET ?"
+      db.query(query, user, (err, result)=>{
+            if(err) throw err;
+            callback(result)
+      })
+
+    },
+
 
     deleteUser: (id, callback)=>{
         const query = 'DELETE FROM users WHERE id = ?';
@@ -49,6 +67,19 @@ const User = {
           callback(null, results[0]);
         });
       },
+
+      findUserByEmail: (email, callback) => {
+        const sql = 'SELECT * FROM users WHERE email = ?';
+        db.query(sql, [email], (err, results) => {
+            if (err) {
+                return callback(err);
+            }
+            if (results.length > 0) {
+                return callback(null, results[0]); // Return the existing user
+            }
+            return callback(null, null); // No user found
+        });
+    },
 
       searchUsers: (searchCriteria, callback) => {
         let query = 'SELECT * FROM users WHERE 1=1'; // The initial condition is always true to append further conditions

@@ -12,8 +12,10 @@ const db = mysql.createConnection({
 //CONNECT TO THE DATABASE
 db.connect((err)=>{
     if (err) {
+        // display an error message if the connection failed
         console.log('Error connecting to the database:', err.stack)
     }else{
+        //display a successful connected message
         console.log('Connected to the database as ID', db.threadId);
     }
 })

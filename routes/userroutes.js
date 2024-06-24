@@ -11,6 +11,7 @@ router.get('/dashboard', userController.dashboard);
 router.get('/admin/list', userController.listAll);
 router.post('/delete-user', userController.deleteuser);
 router.get('/search-user', userController.search);
+router.post('/create-profile', userController.regsterProfile);
 
 
 
