@@ -10,6 +10,7 @@ const nodemailer = require('nodemailer');
 const conn = require("./db")
 const path = require('path');
 const cors = require('cors');
+require('dotenv').config();
 
 
 function isAuthenticated(req, res, next) {

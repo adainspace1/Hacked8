@@ -16,6 +16,9 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage }).single('profile_image'); // Accept a single file with the name 'profile_image'
 
 const userController = {
+
+
+
   login: (req, res) => {
     const { email, password } = req.body;
 
@@ -52,10 +55,7 @@ const userController = {
 
 
   regsterProfile: (req, res)=>{
-      const {fullname, stack, bio, id} = req.body;
-
-
-    
+      const {fullname, stack, bio, id} = req.body;   
       const newprofile = {
         
         fullname : fullname,
@@ -74,10 +74,6 @@ const userController = {
 
   },
 
-  send:(req, res)=>{
-
-
-  },
   register: (req, res) => {
     // Use multer to handle file upload
     upload(req, res, (err) => {

@@ -118,17 +118,10 @@
 
 			<!-- create profile -->
 
-			<% if(results){ %>	
-          		<h1><%= results.fullname %></h1>
-				 
-				  <h1><%= results.stack %></h1>
-				  <h1><%= results.bio %></h1>
-
-			<% } else { %>
 
 
 
-					  <h2 class="mt-5">Create a Developer Profile</h2>
+			<h2 class="mt-5">Create a Developer Profile</h2>
 
             
             <form action="/users/create-profile" method="POST" class="mt-3"> 
@@ -156,7 +149,7 @@
             </form>
 
 
-				<% } %>
+				
 
 
 		
