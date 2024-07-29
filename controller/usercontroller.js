@@ -2,9 +2,6 @@ const User = require('../model/usermodel');
 const bcrypt = require('bcrypt');
 const multer = require('multer');
 const path = require('path');
-const cloudinary = require("cloudinary").v2;
-
-
 
 // Configure Multer for file uploads
 const storage = multer.diskStorage({
@@ -186,8 +183,6 @@ p {
   },
 
   register: (req, res) => {
-        // Use multer with memory storage to handle file upload in-memory
-      const upload = multer({ storage: multer.memoryStorage() }).single('profile_image');
     // Use multer to handle file upload
     upload(req, res, (err) => {
       if (err) {
