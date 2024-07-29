@@ -251,6 +251,7 @@ app.get('/logout', logout);
 
 
 // Start the server
+
 const port = 3306;
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}/`);
