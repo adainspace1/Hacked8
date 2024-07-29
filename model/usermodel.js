@@ -10,6 +10,15 @@ const User = {
         })
     },
 
+    uploadCourse:(user, callback)=>{
+      const query = "INSERT INTO courses SET ?"
+      db.query(query, user, (err, result)=>{
+        if(err) throw err
+        callback(result)
+      })
+
+    },
+
     createProfile:(user, callback)=>{
       const query = "INSERT INTO profile SET ?"
       db.query(query, user, (err, result)=>{
@@ -20,7 +29,7 @@ const User = {
     },
 
     message:(user, callback)=>{
-      const query = "INSERT INTO message SET ?"
+      const query = "INSERT INTO comments SET ?"
       db.query(query, user, (err, result)=>{
             if(err) throw err;
             callback(result)
@@ -30,7 +39,7 @@ const User = {
 
 
     deleteUser: (id, callback)=>{
-        const query = 'DELETE FROM users WHERE id = ?';
+        const query = 'DELETE FROM users WHERE user_id = ?';
         db.query(query, [id], (err, result)=>{
                 if(err) throw err;
                 callback(result);
@@ -38,7 +47,7 @@ const User = {
     },
 
     updateUser: (id, user,  callback)=>{
-        const query = 'UPDATE users SET ? WHERE id = ?';
+        const query = 'UPDATE users SET ? WHERE user_id = ?';
         db.query(query, [user, id], (err, result) => {
             if (err) throw err;
             callback(result);
@@ -54,7 +63,7 @@ const User = {
       },
       
       getUserById: (id, callback) => {
-        const query = 'SELECT * FROM users WHERE id = ?';
+        const query = 'SELECT * FROM users WHERE user_id = ?';
         db.query(query, [id], (err, result) => {
           if (err) throw err;
           callback(result);

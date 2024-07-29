@@ -12,7 +12,8 @@ router.get('/admin/list', userController.listAll);
 router.post('/delete-user', userController.deleteuser);
 router.get('/search-user', userController.search);
 router.post('/create-profile', userController.regsterProfile);
-
+router.post('/uploadcourse', userController.teacher);
+router.post('/comments', userController.comment);
 
 
 

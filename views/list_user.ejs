@@ -16,9 +16,20 @@
 		
 		<ul class="side-menu top">
 			<li class="active">
-				<a href="#">
+				<a href="/users/admin/list">
 					<i class='bx bxs-dashboard' ></i>
 					<span class="text">List Users</span>
+				</a>
+			</li>
+			
+			
+		</ul>
+
+        <ul class="side-menu top">
+			<li >
+				<a href="/dashboard/usermessage">
+					<i class='bx bxs-dashboard' ></i>
+					<span class="text">Messages</span>
 				</a>
 			</li>
 			
@@ -42,8 +53,8 @@
             <a href="#" class="nav-link">Hacked8 Admin</a>
 
 
-            <a href="#" class="notification">
-				<i class='bx bxs-bell' ></i>
+            <a href="/dashboard/usermessage" class="notification">
+				<i class='bx bxs-bell'></i>
 				<span class="num">8</span>
 			</a>
 
@@ -70,12 +81,13 @@
                         <th>Email</th>
                         <th>profile pic</th>
                         <th>Actions</th>
+
                     </tr>
                 </thead>
                 <tbody>
                     <% user.forEach(users => { %>
                         <tr>
-                            <td><%= users.id %></td>
+                            <td><%= users.user_id %></td>
                             <td><%= users.firstname %></td>
                             <td><%= users.lastname %></td>
                             <td><%= users.email %></td>
@@ -84,29 +96,38 @@
                                 </td>
                             <td>
                                 <form action="/users/delete-user" method="POST" class="d-inline">
-                                    <input type="hidden" name="id" value="<%= users.id %>">
+                                    <input type="hidden" name="id" value="<%= users.user_id %>">
                                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                 </form>
                             </td>
+
+
+                          
                         </tr>
                     <% }); %>
                 </tbody>
             </table>
     
             <h2 class="mt-5">Upload a Course</h2>
-            <form action="/add-user" method="POST" class="mt-3">
+            <form action="/users/uploadcourse" method="POST" class="mt-3" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="firstname">Course Title:</label>
-                    <input type="text" class="form-control" id="firstname" name="firstname" required>
+                    <input type="text" class="form-control" id="name" name="name" required>
                 </div>
+
                 <div class="form-group">
-                    <label for="lastname">Course Categories:</label>
-                    <input type="text" class="form-control" id="lastname" name="lastname" required>
+                    <label for="lastname">Price:</label>
+                    <input type="text" class="form-control" id="price" name="price" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastname">Description:</label>
+                    <input type="text" class="form-control" id="description" name="description" required>
                 </div>
     
                 <div class="form-group">
-                    <label for="lastname">Course video:</label>
-                    <input type="file" class="form-control" id="video" name="video" required>
+                    <label for="lastname">Course Picture:</label>
+                    <input type="file" class="form-control" id="img" name="img" accept="image/*" required>
                 </div>
                
                 <button type="submit" class="btn btn-primary">Upload</button>

@@ -13,7 +13,20 @@ const storage = multer.diskStorage({
   }
 });
 
+const coursestorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'courses/'); // Ensure the 'uploads' directory exists
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname)); // Use a unique filename
+  }
+});
+
 const upload = multer({ storage: storage }).single('profile_image'); // Accept a single file with the name 'profile_image'
+const upload2 = multer({ storage: coursestorage }).single('img'); // Accept a single file with the name 'profile_image'
+
+
+
 
 const userController = {
 
@@ -51,6 +64,101 @@ const userController = {
         res.redirect('/dashboard');
       });
     });
+  },
+
+
+  teacher:(req, res)=>{
+
+    upload2(req, res, (err)=>{
+      if (err) {
+        console.error('Error uploading file:', err);
+        return res.status(500).send('File upload error.');
+      }
+
+      const {name, price, description} = req.body;
+      const img = req.file ? req.file.filename : null; // Get the filename of the uploaded file
+      const newUser = {
+        name:name,
+        price:price,
+        description:description,
+        img:img
+      }
+       User.uploadCourse(newUser, (result)=>{
+        req.session.user = {
+          id: result.insertId, // Assuming the user ID is returned after insert
+          name,
+          price,
+          img: img // Store the image info in session
+        };
+
+        console.log(req.session.user)
+    res.send(`
+          <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacked8</title>
+</head>
+<style>
+    /* styles.css */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.center-image {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    margin: 0;
+    color: #333333;
+}
+
+p {
+    font-size: 16px;
+    color: #666666;
+}
+
+</style>
+<body>
+    <div class="container">
+        <img src="/images/light.png" alt="email" class="center-image">
+        <h1>Course Uploaded Successfully</h1>
+        
+    </div>
+</body>
+</html>
+          `)
+
+
+
+       })
+    })
+    
+
+    
+
   },
 
 
@@ -165,6 +273,25 @@ const userController = {
     User.searchUsers(searchCriteria, (results)=>{
         console.log(results)
         res.render('search', {result: results})
+    })
+  },
+
+  comment: (req, res)=>{
+
+    const {message} = req.body;
+
+    const newMessage={
+      message:message
+    }
+    
+    
+    User.message(newMessage, (result)=>{
+      req.session.user = {
+            id: result.insertId, // Assuming the user ID is returned after insert
+            message// Store the image info in session
+          };
+
+          console.log(req.session.user)
     })
   }
 };

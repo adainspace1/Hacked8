@@ -288,7 +288,7 @@
   <div class="box-container">
     <% results.forEach(function(item) { %>
       <div class="box">
-        <img src="<%= item.img %>" alt="<%= item.name %>">
+        <img src="/courses/<%= item.img %>" alt="<%= item.name %>">
         <h3><%= item.name %></h3>
         <p>$<%= item.price %></p>
 
@@ -311,7 +311,7 @@
     
   <!-- form -->
   <div class="contact-container" id="contact">
-      <form action="http://localhost:3000/sendmail" method="post" class="contact-left">
+      <form action="http://localhost:3200/sendmail" method="post" class="contact-left">
   
           <div class="contact-left-title">
               <h2>Contact</h2>

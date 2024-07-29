@@ -1,13 +1,13 @@
 // I AM IMPORTING THE MYSQL MODULE I INSTALLED FROM NPM.....
-require('dotenv').config();
+// require('dotenv').config();
 const mysql = require('mysql');
 
 //CREATE CONNECTION TO THE DATABASE
 const db = mysql.createConnection({
-        host: process.env.DB_HOST,
-        user: process.env.DB_USERNAME,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_DATABASENAME       
+        host: "srv1373.hstgr.io",
+        user: "u652330767_Ernest",
+        password: "Adaintechnology2@",
+        database: "u652330767_hacked8"       
 });
 
 //CONNECT TO THE DATABASE
