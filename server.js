@@ -67,6 +67,7 @@ const logout = (req, res) => {
 
 // Set the view engine to EJS
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views')); 
 //set cross origin resource 
 app.use(cors());
 //host static files on my node server
