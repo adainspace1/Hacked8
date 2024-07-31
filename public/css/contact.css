@@ -20,7 +20,7 @@
      * colors
      */
     
-    --selective-yellow: hsl(42, 94%, 55%);
+    --selective-yellow: hsl(30, 100%, 55%);
     --eerie-black-1: hsl(0, 0%, 9%);
     --eerie-black-2: hsl(180, 3%, 7%);
     --quick-silver: hsl(0, 0%, 65%);
@@ -35,7 +35,7 @@
     --white_50: hsla(0, 0%, 100%, 0.5);
     --black_50: hsla(0, 0%, 0%, 0.5);
     --black_30: hsla(0, 0%, 0%, 0.3);
-    --kappel: #FFC700;
+    --kappel: #ff8808;
     --white: hsl(0, 0%, 100%);
     --transition: all 400ms ease;
     
