@@ -252,8 +252,8 @@ app.get('/logout', logout);
 
 // Start the server
 //live port number 
-//const port = 3306;
-const port = 3006;
+const port = 3306;
+// const port = 3006;
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}/`);
 });
