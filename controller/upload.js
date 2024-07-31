@@ -43,7 +43,7 @@ const uploadProduct = async (req, res) => {
             img: imageURL // Store the image URL in session
           };
 
-          res.redirect('/list_user')
+          res.redirect('/courses')
       });
 
     } catch (error) {
