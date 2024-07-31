@@ -31,7 +31,7 @@ const uploadProduct = async (req, res) => {
         name,
         price,
         description,
-        profile_image: imageURL
+        img: imageURL
       };
 
       User.uploadCourse(newUser, (result)=>{
