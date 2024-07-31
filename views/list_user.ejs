@@ -92,7 +92,7 @@
                             <td><%= users.lastname %></td>
                             <td><%= users.email %></td>
                             <td>
-                                <img src="/uploads/<%= users.profile_image %>" width="50px" height="50px" style="border-radius: 50%;"/>
+                                <img src="<%= users.profile_image %>" width="50px" height="50px" style="border-radius: 50%;"/>
                                 </td>
                             <td>
                                 <form action="/users/delete-user" method="POST" class="d-inline">
@@ -109,7 +109,7 @@
             </table>
     
             <h2 class="mt-5">Upload a Course</h2>
-            <form action="/users/uploadcourse" method="POST" class="mt-3" enctype="multipart/form-data">
+            <form action="/admin/uploadcourses" method="POST" class="mt-3" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="firstname">Course Title:</label>
                     <input type="text" class="form-control" id="name" name="name" required>
@@ -127,7 +127,7 @@
     
                 <div class="form-group">
                     <label for="lastname">Course Picture:</label>
-                    <input type="file" class="form-control" id="img" name="img" accept="image/*" required>
+                    <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
                 </div>
                
                 <button type="submit" class="btn btn-primary">Upload</button>

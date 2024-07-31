@@ -10,7 +10,7 @@ const nodemailer = require('nodemailer');
 const conn = require("./db")
 const path = require('path');
 const cors = require('cors');
-const Flutterwave = require('flutterwave-node-v3'); 
+const uploadCourseRoute = require('./routes/upload.route')
 require('dotenv').config();
 
 
@@ -95,7 +95,7 @@ app.use(session({
 
 // Use the user routes
 app.use('/users', userRoutes);
-
+app.use('/admin', uploadCourseRoute)
 
 //host the home page of the index.ejs page
 app.get('/', (req, res)=>{
