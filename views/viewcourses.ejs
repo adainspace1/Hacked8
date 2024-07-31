@@ -288,11 +288,11 @@
   <div class="box-container">
     <% results.forEach(function(item) { %>
       <div class="box">
-        <img src="/courses/<%= item.img %>" alt="<%= item.name %>">
+        <img src="<%= item.img %>" alt="<%= item.name %>">
         <h3><%= item.name %></h3>
         <p>$<%= item.price %></p>
 
-        <a href="/course/<%= item.id %>"><button>View</button></a>
+        <a href="<%= item.id %>"><button>View</button></a>
       </div>
     <% }) %>
   </div>
