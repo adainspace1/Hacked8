@@ -40,7 +40,7 @@ const uploadProduct = async (req, res) => {
             name,
             price,
             description,
-            profile_image: imageURL // Store the image URL in session
+            img: imageURL // Store the image URL in session
           };
 
           res.redirect('/list_user')
