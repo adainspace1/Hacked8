@@ -87,7 +87,7 @@
 
           
           <li class="navbar-item">
-            <a href="/courses" class="navbar-link" data-nav-link>Courses</a>
+            <a href="#course" class="navbar-link" data-nav-link>Courses</a>
           </li>
 
          
@@ -278,6 +278,25 @@
 </section> 
 
 
+
+
+<section class="course" id="course">
+  <center>
+    <h1 class="heading">Courses</h1>
+  </center>
+
+  <div class="box-container">
+    <% results.forEach(function(item) { %>
+      <div class="box">
+        <img src="/courses/<%= item.img %>" alt="<%= item.name %>">
+        <h3><%= item.name %></h3>
+        <p>$<%= item.price %></p>
+
+        <a href="/course/<%= item.id %>"><button>View</button></a>
+      </div>
+    <% }) %>
+  </div>
+</section>
 
 
 
