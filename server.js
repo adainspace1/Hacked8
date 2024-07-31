@@ -99,10 +99,7 @@ app.use('/users', userRoutes);
 
 //host the home page of the index.ejs page
 app.get('/', (req, res)=>{
-  conn.query(`SELECT * FROM courses`, (err, result)=>{
-    res.render('index',{results:result, user: req.session.user})
-})
-  
+res.render('index',{ user: req.session.user})
 });
 
 //to get the course id from the mysql database.
