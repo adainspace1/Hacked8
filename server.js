@@ -79,7 +79,12 @@ app.get('/', (req, res)=>{
 //host the home page of the index.ejs page
 app.get('/courses', (req, res)=>{
   conn.query(`SELECT * FROM courses`, (err, result)=>{
-    res.render('viewcourses',{results:result, user: req.session.user})
+    if (err) {
+      console.log(err)
+    }else{
+      res.render('viewcourses',{results:result, user: req.session.user})
+
+    }
 })
   
 });
