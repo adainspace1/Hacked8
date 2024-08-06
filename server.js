@@ -77,7 +77,7 @@ app.get('/', (req, res)=>{
 
 
 //host the home page of the index.ejs page
-app.get('/listcourses', (req, res)=>{
+app.get('/courses', (req, res)=>{
   conn.query(`SELECT * FROM courses`, (err, result)=>{
     res.render('viewcourses',{results:result, user: req.session.user})
 })
