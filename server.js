@@ -96,7 +96,7 @@ app.get('/course/:id', isAuthenticated, (req, res) => {
     if (result.length === 0) {
       return res.status(404).send('Course not found');
     }
-    res.render('courses', { course: result[0], user: req.session.user });
+    res.render('incourses', { course: result[0], user: req.session.user });
   });
 });
 
