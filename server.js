@@ -170,9 +170,11 @@ app.get('/dashboard/profile/:id', isAuthenticated , (req, res) => {
     if (err) {
       console.error('Error fetching course details:', err);
       return res.status(500).send('Server error.');
+    }else{
+      res.render('profile', { results: result[0], user: req.session.user });
+
     }
     
-    res.render('profile', { results: result[0], user: req.session.user });
 
     // if (req.session.user) {
     //   res.render('profile', {results: result,  user: req.session.user });
